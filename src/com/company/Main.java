@@ -21,17 +21,32 @@ public class Main {
 
         List<Invoice> invoices = new ArrayList<>();
 
+        invoices.add(new Invoice("Training", 1, 1));
+        invoices.add(new Invoice("Debt", 2, 3));
+        invoices.add(new Invoice("Training", 3, 1));
+        invoices.add(new Invoice("Check", 4, 4));
+        invoices.add(new Invoice("Debt", 5, 2));
+        invoices.add(new Invoice("Pay", 6, 1));
+        invoices.add(new Invoice("Pay", 7, 2));
+
         List<Invoice> oracleAndTrainingInvoices = invoices.stream()
                 .filter(inv -> inv.getCustomer() == Customer.ORACLE)
                 .filter(inv -> inv.getTitle().contains("Training"))
-                .sorted().toList();
+                .sorted()
+                .collect(Collectors.toList());
+
+        System.out.println(oracleAndTrainingInvoices);
 
         List<Integer> ids = invoices.stream()
-                .filter(inv -> inv.getID())
-                .collect(Collectors.toList());
+                .map(inv -> inv.getID())
+                .toList();
+
+        System.out.println(ids);
 
         List<Integer> firstFiveIds = ids.stream()
                 .limit(5).toList();
+
+        System.out.println(firstFiveIds);
     }
 
     public static List<Integer> findEven(List<Integer> list){
