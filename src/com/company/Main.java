@@ -1,7 +1,6 @@
 package com.company;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -17,6 +16,22 @@ public class Main {
         System.out.println(startsWith1List);
         System.out.println(sum);
         System.out.println(sortedList);
+
+        //continue
+
+        List<Invoice> invoices = new ArrayList<>();
+
+        List<Invoice> oracleAndTrainingInvoices = invoices.stream()
+                .filter(inv -> inv.getCustomer() == Customer.ORACLE)
+                .filter(inv -> inv.getTitle().contains("Training"))
+                .sorted().toList();
+
+        List<Integer> ids = invoices.stream()
+                .filter(inv -> inv.getID())
+                .collect(Collectors.toList());
+
+        List<Integer> firstFiveIds = ids.stream()
+                .limit(5).toList();
     }
 
     public static List<Integer> findEven(List<Integer> list){
